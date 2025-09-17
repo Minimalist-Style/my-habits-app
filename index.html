@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Трекер привычек с AI</title>
+
+    <!-- PWA (Progressive Web App) Tags -->
+    <meta name="theme-color" content="#8B5CF6">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Привычки">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3crect width='100' height='100' rx='20' fill='%238B5CF6'/%3e%3cpath d='M25 50 L45 70 L75 30' stroke-width='10' stroke='white' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e">
+    <link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogItCi0LDQtdC60LTQtCDQv9GA0LjQstC+0YfQtdC6IEFJIiwKICAic2hvcnRfbmFtZSI6ICLQn9GA0LjQstC+0YfQutCiIiwKICAic3RhcnRfdXJsIjogIi4iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiNmMWY1ZjkiLAogICJ0aGVtZV9jb2xvciI6ICIjOEI1Q0Y2IiwKICAiZGVzY3JpcHRpb24iOiAi0JLQoSDRg9C80L3Ri9C7INC/0L7QvNC+0YfQvdC40Log0LTQu9C4INC+0YTRg9C60YLQvdC40YLRiyDQv9GA0LjQstC+0YfQutC40LoiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBIUjI0VW5GYlcxaGNtNWhiV0FzSWpNek9EVTVGREV5TkNBeU1DQXdNRDAyTlRreU5TQXlOeEF3TURFeU5DQXlNeUFnSUNBZ0lDQWdJQ0FnSUNBZ0lDQWdJR05zYVdZc0lqSTJOVEk1RkRFeU5DQXlNQ0F3TURFeU5TQXlOQ0F3TURFeU5DQXlOU0F3TURFeU5TQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURBeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlNQ0F3TUNBeU5DQXlOU0F3TURFeU5DQXlOU0F3TURBeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURBeU5TQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURBeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURBeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU”dWN0aW9uIjoi0JLQoSDRg9C80L3Ri9C7INC/0L7QvNC+0YfQvdC40Log0LTQu9C4INC+0YTRg9C60YLQvdC40YLRiyDQv9GA0LjQstC+0YfQutC40LoiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBIUjI0VW5GYlcxaGNtNWhiV0FzSWpNek9EVTVGREV5TkNBeU1DQXdNRDAyTlRreU5TQXlOeEF3TURFeU5DQXlNeUFnSUNBZ0lDQWdJQ0FnSUNBZ0lDQWdJR05zYVdZc0lqSTJOVEk1RkRFeU5DQXlNQ0F3TURFeU5TQXlOQ0F3TURFeU5DQXlOU0F3TURFeU5TQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURBeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlNQ0F3TUNBeU5DQXlOU0F3TURFeU5DQXlOU0F3TURBeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURBeU5TQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURBeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURBeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3TURFeU5DQXlOU0F3-ciwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIsCiAgICAgICJwdXJwb3NlIjogImFueSBtYXNrYWJsZSIKICAgIH0KICBdCn0=">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .habit-item, .modal-content {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+        .done {
+            text-decoration: line-through;
+            color: #9ca3af; /* gray-400 */
+        }
+        .done .circle {
+            background-color: #34d399; /* green-400 */
+            border-color: #34d399; /* green-400 */
+        }
+        .spinner {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            width: 16px;
+            height: 16px;
+            animation: spin 1s ease-in-out infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 flex items-center justify-center min-h-screen">
+
+    <div class="w-full max-w-md mx-auto p-4 md:p-6">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-violet-600 dark:text-violet-400">Мои привычки</h1>
+            <p class="text-slate-500 dark:text-slate-400 mt-2">Отмечай свой прогресс каждый день!</p>
+        </header>
+
+        <main>
+            <!-- Форма для добавления новой привычки -->
+            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-4 mb-6">
+                <div class="flex items-center space-x-3">
+                    <input type="text" id="habit-input" placeholder="Например, выучить английский" class="w-full bg-slate-100 dark:bg-slate-700 border-2 border-transparent focus:border-violet-500 focus:ring-0 rounded-lg px-4 py-2 transition outline-none" autocomplete="off">
+                    <button id="add-button" class="bg-violet-600 hover:bg-violet-700 text-white font-semibold rounded-lg px-5 py-2 transition duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-violet-400 focus:ring-opacity-75">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Контейнер для списка привычек -->
+            <div id="habits-list" class="space-y-3"></div>
+            
+            <!-- Сообщение, если привычек нет -->
+            <div id="empty-state" class="hidden text-center bg-white dark:bg-slate-800 rounded-xl shadow-lg p-8 mt-4">
+                 <p class="text-slate-500 dark:text-slate-400">У вас пока нет привычек.</p>
+                 <p class="text-slate-500 dark:text-slate-400 mt-1">Добавьте первую или...</p>
+                 <button id="suggest-button" class="mt-4 bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded-lg transition duration-200 shadow-md hover:shadow-lg flex items-center justify-center mx-auto">
+                    <span class="mr-2">✨</span> Предложить привычки
+                 </button>
+            </div>
+            
+            <!-- Кнопка сброса прогресса -->
+            <div class="text-center mt-8">
+                <button id="reset-button" class="bg-red-500 hover:bg-red-600 text-white font-medium rounded-lg px-4 py-2 transition duration-200 text-sm shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">
+                    Начать новый день
+                </button>
+            </div>
+        </main>
+        
+        <footer class="text-center mt-12 text-sm text-slate-400 dark:text-slate-500">
+            <p>Проект для школы &copy; 2025</p>
+        </footer>
+    </div>
+    
+    <!-- Модальное окно для подтверждений и предложений AI -->
+    <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50">
+        <div class="modal-content bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-6 w-full max-w-sm">
+            <h3 id="modal-title" class="text-lg font-bold mb-4"></h3>
+            <div id="modal-body" class="text-slate-600 dark:text-slate-300 mb-6"></div>
+            <div id="modal-footer" class="flex justify-end space-x-3"></div>
+        </div>
+    </div>
+
+
+    <script>
+        // --- Gemini API Configuration ---
+        const API_KEY = "AIzaSyBHN0crjiovKtOzjQsArfSIRRnnHyXlLXg"; // ВАЖНО: Сюда нужно вставить API-ключ от Google AI Studio
+
+        // --- Получение элементов со страницы ---
+        const habitInput = document.getElementById('habit-input');
+        const addButton = document.getElementById('add-button');
+        const habitsList = document.getElementById('habits-list');
+        const emptyState = document.getElementById('empty-state');
+        const resetButton = document.getElementById('reset-button');
+        const suggestButton = document.getElementById('suggest-button');
+        const modal = document.getElementById('modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalBody = document.getElementById('modal-body');
+        const modalFooter = document.getElementById('modal-footer');
+
+        let habits = JSON.parse(localStorage.getItem('habits')) || [];
+
+        // --- Функции для работы с Модальным Окном ---
+        const showModal = (title, body, buttons) => {
+            modalTitle.textContent = title;
+            modalBody.innerHTML = body;
+            modalFooter.innerHTML = '';
+            buttons.forEach(btn => {
+                const button = document.createElement('button');
+                button.textContent = btn.text;
+                button.className = btn.class;
+                button.onclick = btn.handler;
+                modalFooter.appendChild(button);
+            });
+            modal.classList.remove('hidden');
+        };
+
+        const hideModal = () => {
+            modal.classList.add('hidden');
+        };
+
+        // --- Основные функции для работы с привычками ---
+        const renderHabits = () => {
+            habitsList.innerHTML = '';
+
+            if (habits.length === 0) {
+                emptyState.classList.remove('hidden');
+                resetButton.classList.add('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+                resetButton.classList.remove('hidden');
+            }
+
+            habits.forEach((habit, index) => {
+                const habitItem = document.createElement('div');
+                habitItem.className = `habit-item bg-white dark:bg-slate-800 rounded-xl shadow-lg p-4 flex items-center justify-between transition-all duration-300 ${habit.done ? 'done' : ''}`;
+                
+                habitItem.innerHTML = `
+                    <div class="flex items-center cursor-pointer flex-grow" onclick="toggleHabit(${index})">
+                        <div class="circle w-6 h-6 rounded-full border-2 border-slate-300 dark:border-slate-600 mr-4 transition-all duration-300 flex items-center justify-center flex-shrink-0">
+                            ${habit.done ? `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 16 16"><path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/></svg>` : ''}
+                        </div>
+                        <span class="font-medium break-all">${habit.text}</span>
+                    </div>
+                    <div class="flex items-center ml-2 flex-shrink-0">
+                        <button onclick="breakDownHabit('${habit.text}')" class="text-amber-400 hover:text-amber-500 transition p-1" title="Разбить на шаги с помощью AI">
+                            <span class="text-xl">✨</span>
+                        </button>
+                        <button onclick="deleteHabit(${index})" class="text-slate-400 hover:text-red-500 dark:hover:text-red-400 transition p-1" title="Удалить">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.528ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Zm3.5 0a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/></svg>
+                        </button>
+                    </div>
+                `;
+                habitsList.appendChild(habitItem);
+            });
+        };
+
+        const saveHabits = () => localStorage.setItem('habits', JSON.stringify(habits));
+
+        const addHabitToList = (text) => {
+            const trimmedText = text.trim();
+            if (trimmedText && !habits.some(h => h.text === trimmedText)) {
+                habits.push({ text: trimmedText, done: false });
+            }
+        }
+        
+        const addHabitFromInput = () => {
+            const text = habitInput.value.trim();
+            if (text) {
+                addHabitToList(text);
+                habitInput.value = '';
+                saveHabits();
+                renderHabits();
+            }
+        };
+
+        const deleteHabit = (index) => {
+            habits.splice(index, 1);
+            saveHabits();
+            renderHabits();
+        };
+
+        const toggleHabit = (index) => {
+            habits[index].done = !habits[index].done;
+            saveHabits();
+            renderHabits();
+        };
+        
+        const resetProgress = () => {
+            showModal('Начать новый день?', 'Все отметки о выполнении будут сняты.', [
+                { text: 'Отмена', class: 'px-4 py-2 rounded-lg bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 transition', handler: hideModal },
+                { text: 'Подтвердить', class: 'px-4 py-2 rounded-lg bg-red-500 text-white hover:bg-red-600 transition', handler: () => {
+                    habits.forEach(habit => habit.done = false);
+                    saveHabits();
+                    renderHabits();
+                    hideModal();
+                }}
+            ]);
+        };
+
+        // --- Gemini API Функции ---
+        async function callGeminiAPI(prompt) {
+            if (!API_KEY) {
+                throw new Error("API ключ не предоставлен. Пожалуйста, добавьте его в код.");
+            }
+
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${API_KEY}`;
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }],
+                 generationConfig: { responseMimeType: "application/json" }
+            };
+
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                throw new Error(`Ошибка API: ${response.statusText}`);
+            }
+
+            const result = await response.json();
+            const text = result.candidates[0].content.parts[0].text;
+            return JSON.parse(text);
+        }
+        
+        const showAISuggestions = (suggestions) => {
+             let suggestionsHtml = '<div class="space-y-2">';
+            suggestions.forEach((s, i) => {
+                suggestionsHtml += `<div class="p-3 bg-slate-100 dark:bg-slate-700 rounded-lg">${s}</div>`;
+            });
+            suggestionsHtml += '</div>';
+
+            showModal('✨ Предложения от AI', suggestionsHtml, [
+                { text: 'Закрыть', class: 'px-4 py-2 rounded-lg bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 transition', handler: hideModal },
+                { text: 'Добавить все', class: 'px-4 py-2 rounded-lg bg-violet-600 text-white hover:bg-violet-700 transition', handler: () => {
+                    suggestions.forEach(s => addHabitToList(s));
+                    saveHabits();
+                    renderHabits();
+                    hideModal();
+                }}
+            ]);
+        }
+        
+        const suggestNewHabits = async () => {
+            const prompt = `Предложи 3 простых, но эффективных ежедневных привычки для начинающего. Ответ дай в формате JSON-массива строк. Например: ["Привычка 1", "Привычка 2", "Привычка 3"]`;
+            showModal('✨ Магия AI', '<div class="flex items-center justify-center"><div class="spinner mr-3"></div><span>Думаю...</span></div>', []);
+            try {
+                const suggestions = await callGeminiAPI(prompt);
+                showAISuggestions(suggestions);
+            } catch (error) {
+                showModal('Ошибка', error.message, [
+                     { text: 'OK', class: 'px-4 py-2 rounded-lg bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 transition', handler: hideModal }
+                ]);
+            }
+        };
+        
+        const breakDownHabit = async (habitText) => {
+            const prompt = `Разбей эту большую цель на 3 более мелкие, ежедневные привычки: '${habitText}'. Ответ дай в формате JSON-массива строк.`;
+            showModal('✨ Магия AI', '<div class="flex items-center justify-center"><div class="spinner mr-3"></div><span>Разбиваю на шаги...</span></div>', []);
+            try {
+                const suggestions = await callGeminiAPI(prompt);
+                showAISuggestions(suggestions);
+            } catch (error) {
+                showModal('Ошибка', error.message, [
+                     { text: 'OK', class: 'px-4 py-2 rounded-lg bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 transition', handler: hideModal }
+                ]);
+            }
+        };
+
+
+        // --- Навешиваем обработчики событий ---
+        addButton.addEventListener('click', addHabitFromInput);
+        resetButton.addEventListener('click', resetProgress);
+        suggestButton.addEventListener('click', suggestNewHabits);
+        
+        habitInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') addHabitFromInput();
+        });
+        
+        // --- Первоначальный запуск ---
+        renderHabits();
+    </script>
+</body>
+</html>
+
+
+
